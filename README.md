@@ -35,7 +35,6 @@ An intelligent conversational AI platform that integrates multiple Large Languag
 | **Backend** | Python, FastAPI |
 | **AI/ML** | LangGraph, OpenAI API, Groq API |
 | **Web Search** | Custom search integration |
-| **Deployment** | Streamlit Cloud |
 | **Environment** | Python 3.11, Conda |
 
 ## 🏗️ Architecture
@@ -66,7 +65,7 @@ An intelligent conversational AI platform that integrates multiple Large Languag
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/bhupesh-danewa/ai-chatbot-platform.git
+   git clone https://github.com/bhupeshdanewa07/ai-chatbot-platform.git
    cd ai-chatbot-platform
    ```
 
@@ -100,8 +99,6 @@ An intelligent conversational AI platform that integrates multiple Large Languag
    streamlit run frontend.py
    ```
 
-6. **Access the application**
-   - Open your browser and navigate to `http://localhost:8501`
 
 ## 📁 Project Structure
 
@@ -112,7 +109,6 @@ ai-chatbot-platform/
 ├── 📄 agentic_ai.py        # AI agent logic and LLM integration
 ├── 📄 requirements.txt     # Python dependencies
 ├── 📄 .env.example         # Environment variables template
-├── 📄 .gitignore          # Git ignore rules
 ├── 📄 README.md           # Project documentation
 └── 📁 __pycache__/        # Python cache (auto-generated)
 ```
@@ -128,7 +124,7 @@ ai-chatbot-platform/
   - `llama-3.3-70b-versatile`
   - `mixtral-8x7b-32768`
 - **OpenAI**: Advanced reasoning
-  - `gpt-4o-mini`
+  - `gpt-4o`
 
 ### 3. Enable Web Search (Optional)
 - Toggle web search for real-time information retrieval
@@ -155,11 +151,6 @@ The application supports multiple models with different capabilities:
 - **Groq Models**: Optimized for speed and efficiency
 - **OpenAI Models**: Advanced reasoning and complex tasks
 
-## 🌐 Live Demo
-
-🚀 **[Try the Live Demo](https://your-streamlit-app-url.streamlit.app/)**
-
-*Experience the AI chatbot platform in action!*
 
 ## 📊 Features Showcase
 
@@ -175,27 +166,6 @@ Define your AI agent's personality and expertise through system prompts.
 ### Professional Interface
 Clean, modern UI built with Streamlit for optimal user experience.
 
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🐛 Issues & Support
-
-If you encounter any issues or have questions:
-
-1. Check the [Issues](../../issues) page
-2. Create a new issue with detailed description
-3. Contact me via [LinkedIn](https://linkedin.com/in/bhupesh-danewa)
 
 ## 🙏 Acknowledgments
 
