@@ -31,7 +31,7 @@ An intelligent conversational AI platform that integrates multiple Large Languag
 
 | Category | Technology |
 |----------|------------|
-| **Frontend** | Streamlit, HTML/CSS |
+| **Frontend** | Streamlit |
 | **Backend** | Python, FastAPI |
 | **AI/ML** | LangGraph, OpenAI API, Groq API |
 | **Web Search** | Custom search integration |
