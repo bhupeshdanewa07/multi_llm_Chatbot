@@ -32,8 +32,8 @@ with st.sidebar:
     # Model provider selection
     provider = st.radio("Select Provider:", ("Groq", "OpenAI"))
     
-    MODEL_NAMES_GROQ = ["llama-3.3-70b-versatile", "mistral-saba-24b"]
-    MODEL_NAMES_OPENAI = ["gpt-4o-mini"]
+    MODEL_NAMES_GROQ = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
+    MODEL_NAMES_OPENAI = ["gpt-5-mini"]
     
     if provider == "Groq":
         selected_model = st.selectbox("Select Groq Model:", MODEL_NAMES_GROQ)
@@ -54,7 +54,8 @@ system_prompt = st.text_area(
     "🎯 Define your AI Agent:", 
     height=100, 
     placeholder="Enter a system prompt to define your AI agent's role and behavior...",
-    help="This defines how your AI agent will behave and respond to queries."
+    help="This defines how your AI agent will behave and respond to queries.",
+    value="Act as an AI chatbot who is smart and friendly"
 )
 
 user_query = st.text_area(
@@ -82,11 +83,16 @@ if st.button("🚀 Ask Agent!", type="primary", use_container_width=True):
             }
             
             try:
-                response = requests.post(API_URL, json=payload, timeout=30)
+                response = requests.post(API_URL, json=payload, timeout=60)
+                
                 if response.status_code == 200:
                     response_data = response.json()
+                    
+                    # Check for error in response
                     if "error" in response_data:
                         st.error(f"❌ Error: {response_data['error']}")
+                    elif "detail" in response_data:
+                        st.error(f"❌ Error: {response_data['detail']}")
                     else:
                         st.success("✅ Response generated successfully!")
                         st.subheader("🤖 Agent Response")
@@ -94,7 +100,11 @@ if st.button("🚀 Ask Agent!", type="primary", use_container_width=True):
                         # Better response formatting
                         with st.container():
                             st.markdown("**Final Response:**")
-                            st.markdown(f"{response_data}")
+                            # Handle both old and new response format
+                            if isinstance(response_data, dict) and "response" in response_data:
+                                st.markdown(response_data["response"])
+                            else:
+                                st.markdown(f"{response_data}")
                             
                         # Model info display
                         with st.expander("ℹ️ Response Details"):
@@ -103,11 +113,16 @@ if st.button("🚀 Ask Agent!", type="primary", use_container_width=True):
                             st.write(f"**Web Search Enabled:** {'Yes' if allow_web_search else 'No'}")
                 else:
                     st.error(f"❌ API Error: Status code {response.status_code}")
+                    try:
+                        error_detail = response.json()
+                        st.error(f"Details: {error_detail}")
+                    except:
+                        st.error(f"Response: {response.text}")
                     
             except requests.exceptions.Timeout:
                 st.error("⏰ Request timed out. Please try again.")
             except requests.exceptions.ConnectionError:
-                st.error("🔌 Connection error. Please ensure the backend server is running.")
+                st.error("🔌 Connection error. Please ensure the backend server is running on port 9999.")
             except Exception as e:
                 st.error(f"❌ Unexpected error: {str(e)}")
     else:
